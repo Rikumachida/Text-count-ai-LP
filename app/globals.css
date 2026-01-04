@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --primary: #7C3AED;
+  --text-dark: #464253;
+  --text-muted: #5E5677;
+  --background: #FFFFFF;
+  --border: #D9D9D9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Noto Sans', sans-serif;
+  color: var(--text-dark);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
