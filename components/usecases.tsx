@@ -4,28 +4,48 @@ import Image from 'next/image';
 
 const usecases = [
   {
-    emoji: '📝',
-    title: 'エントリーシート',
-    description: '就活のES作成に最適。PREP法で論理的な自己PRや志望動機を構成し、説得力のある文章を作成できます。',
-    tags: ['就活', '自己PR', '志望動機'],
-  },
-  {
-    emoji: '📧',
+    icon: '/usecases/icon-envelope.png',
+    iconBg: '#F4E9FF',
     title: 'ビジネスメール',
-    description: '提案書やお礼メールなど、ビジネスシーンで必要な文章を効率的に作成。丁寧さとわかりやすさを両立します。',
-    tags: ['提案', 'お礼', '報告'],
+    description: 'テーマを入力するだけで、AIが各ブロックに最適な内容のヒントを提案。執筆のアイデアに困ることがありません。',
+    tags: [
+      { icon: '/usecases/emoji-tipping-hand.png', label: '提案' },
+      { icon: '/usecases/emoji-grinning.png', label: 'お礼' },
+      { icon: '/usecases/emoji-notepad.png', label: '報告' },
+    ],
   },
   {
-    emoji: '📖',
+    icon: '/usecases/icon-book.png',
+    iconBg: '#D6EFFF',
     title: '論文・レポート',
-    description: '学術的な文章の構成をサポート。序論から結論まで、論理的な流れを設計して執筆できます。',
-    tags: ['学術', '研究', 'レポート'],
+    description: 'テーマを入力するだけで、AIが各ブロックに最適な内容のヒントを提案。執筆のアイデアに困ることがありません。',
+    tags: [
+      { icon: '/usecases/emoji-chart.png', label: '研究' },
+      { icon: '/usecases/emoji-memo.png', label: 'レポート' },
+      { icon: '/usecases/emoji-notepad.png', label: '学術' },
+    ],
   },
   {
-    emoji: '💭',
+    icon: '/usecases/icon-memo-yellow.png',
+    iconBg: '#FFF9E9',
     title: 'ブログ・感想文',
-    description: '読者を惹きつける記事構成を設計。導入から結論まで、読みやすい文章を簡単に作成できます。',
-    tags: ['ブログ', 'コンテンツ', '感想'],
+    description: 'テーマを入力するだけで、AIが各ブロックに最適な内容のヒントを提案。執筆のアイデアに困ることがありません。',
+    tags: [
+      { icon: '/usecases/emoji-memo.png', label: 'ブログ' },
+      { icon: '/usecases/emoji-memo-yellow.png', label: '感想' },
+      { icon: '/usecases/emoji-beaming.png', label: 'コンテンツ' },
+    ],
+  },
+  {
+    icon: '/usecases/icon-memo-red.png',
+    iconBg: '#FFEDE9',
+    title: 'エントリーシート',
+    description: 'テーマを入力するだけで、AIが各ブロックに最適な内容のヒントを提案。執筆のアイデアに困ることがありません。',
+    tags: [
+      { icon: '/usecases/emoji-raising-hand.png', label: '志望動機' },
+      { icon: '/usecases/emoji-tipping-hand.png', label: '自己PR' },
+      { icon: '/usecases/emoji-office-worker.png', label: '就活' },
+    ],
   },
 ];
 
@@ -52,24 +72,56 @@ export function Usecases() {
           {usecases.map((usecase, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 transition-all hover:border-violet-200 hover:shadow-lg"
+              className="group overflow-hidden rounded-2xl border border-[#D9D9D9] bg-white p-6 transition-all hover:border-violet-300 hover:shadow-lg"
             >
-              <div className="mb-4 text-5xl">{usecase.emoji}</div>
-              <h3 className="mb-3 text-xl font-semibold text-[var(--text-dark)]">
-                {usecase.title}
-              </h3>
-              <p className="mb-6 leading-relaxed text-[var(--text-muted)]">
-                {usecase.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {usecase.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    className="rounded-full bg-gray-100 px-3 py-1 text-sm text-[var(--text-muted)]"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              <div className="flex flex-col gap-6">
+                {/* Icon */}
+                <div
+                  className="flex h-14 w-14 items-center justify-center rounded-lg"
+                  style={{ backgroundColor: usecase.iconBg }}
+                >
+                  <Image
+                    src={usecase.icon}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="object-contain"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-4">
+                  {/* Text */}
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-2xl font-semibold text-[#332A3C]">
+                      {usecase.title}
+                    </h3>
+                    <p className="text-[15px] leading-relaxed text-[#332A3C]">
+                      {usecase.description}
+                    </p>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {usecase.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="inline-flex items-center gap-1 rounded-full bg-[#F5F3F8] px-2 py-1"
+                      >
+                        <Image
+                          src={tag.icon}
+                          alt=""
+                          width={20}
+                          height={20}
+                          className="object-contain"
+                        />
+                        <span className="text-[10px] font-semibold tracking-wide text-[#5E5677]">
+                          {tag.label}
+                        </span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -78,4 +130,3 @@ export function Usecases() {
     </section>
   );
 }
-

@@ -1,31 +1,31 @@
 'use client';
 
-import { Sparkles, Layers, Target, Zap } from 'lucide-react';
+import Image from 'next/image';
 
 const features = [
   {
-    icon: Layers,
+    icon: '/icons/icon-cards.png',
+    iconBg: '#FFF9E9',
     title: '構造化された文章設計',
     description: 'PREP法をベースに、論理的な文章構造を簡単に設計。ブロックを組み合わせて、説得力のある文章を作成できます。',
-    color: 'bg-violet-100 text-violet-600',
   },
   {
-    icon: Sparkles,
+    icon: '/icons/icon-lightbulb.png',
+    iconBg: '#F4E9FF',
     title: 'AIによるヒント生成',
     description: 'テーマを入力するだけで、AIが各ブロックに最適な内容のヒントを提案。執筆のアイデアに困ることがありません。',
-    color: 'bg-blue-100 text-blue-600',
   },
   {
-    icon: Target,
+    icon: '/icons/icon-chart.png',
+    iconBg: '#D6EFFF',
     title: '目標文字数の管理',
     description: '全体の目標文字数を設定すると、各ブロックに最適な文字数を自動配分。バランスの取れた文章が書けます。',
-    color: 'bg-emerald-100 text-emerald-600',
   },
   {
-    icon: Zap,
+    icon: '/icons/icon-pencil.png',
+    iconBg: '#FFEDE9',
     title: 'ワンクリックで文章生成',
     description: '設計した構成をもとに、AIが高品質な文章を自動生成。あなたの意図を反映した文章が瞬時に完成します。',
-    color: 'bg-amber-100 text-amber-600',
   },
 ];
 
@@ -50,29 +50,40 @@ export function Features() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={index}
-                className="group rounded-2xl border border-gray-200 bg-white p-8 transition-all hover:border-violet-200 hover:shadow-lg"
-              >
-                <div className={`mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl ${feature.color}`}>
-                  <Icon className="h-7 w-7" />
+        <div className="grid gap-6 md:grid-cols-2">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="group rounded-2xl border border-[#D9D9D9] bg-white p-6 transition-all hover:border-violet-200 hover:shadow-lg"
+            >
+              <div className="flex flex-col gap-6">
+                {/* Icon */}
+                <div
+                  className="flex h-14 w-14 items-center justify-center rounded-lg"
+                  style={{ backgroundColor: feature.iconBg }}
+                >
+                  <Image
+                    src={feature.icon}
+                    alt=""
+                    width={36}
+                    height={36}
+                  />
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-[var(--text-dark)]">
-                  {feature.title}
-                </h3>
-                <p className="leading-relaxed text-[var(--text-muted)]">
-                  {feature.description}
-                </p>
+                
+                {/* Content */}
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-2xl font-semibold text-[#332A3C]">
+                    {feature.title}
+                  </h3>
+                  <p className="text-[15px] leading-relaxed text-[#332A3C]">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
