@@ -2,6 +2,7 @@
 
 import { Check } from 'lucide-react';
 import Link from 'next/link';
+import { useInView } from '@/hooks/useInView';
 
 const plans = [
   {
@@ -52,19 +53,87 @@ const plans = [
   },
 ];
 
+function PricingCard({ plan, index }: { plan: typeof plans[0]; index: number }) {
+  const { ref, isInView } = useInView(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={`relative rounded-2xl p-8 ${
+        plan.highlighted
+          ? 'border-2 border-[var(--primary)] bg-white shadow-xl'
+          : 'border border-gray-200 bg-white'
+      }`}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transform: isInView ? 'translateY(0)' : 'translateY(40px)',
+        transition: `opacity 0.8s ease-out ${index * 0.1}s, transform 0.8s ease-out ${index * 0.1}s`,
+      }}
+    >
+      {plan.highlighted && (
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[var(--primary)] px-4 py-1 text-sm font-semibold text-white">
+          人気
+        </div>
+      )}
+      <div className="mb-6">
+        <h3 className="text-xl font-semibold text-[var(--text-dark)]">
+          {plan.name}
+        </h3>
+        <p className="mt-1 text-sm text-[var(--text-muted)]">
+          {plan.description}
+        </p>
+      </div>
+      <div className="mb-6">
+        <span className="text-4xl font-bold text-[var(--text-dark)]">
+          {plan.price}
+        </span>
+        <span className="text-[var(--text-muted)]">{plan.period}</span>
+      </div>
+      <ul className="mb-8 space-y-3">
+        {plan.features.map((feature, featureIndex) => (
+          <li key={featureIndex} className="flex items-center gap-3">
+            <Check className="h-5 w-5 flex-shrink-0 text-emerald-500" />
+            <span className="text-[var(--text-muted)]">{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href="/signup"
+        className={`block w-full rounded-xl py-3 text-center font-semibold transition-all ${
+          plan.highlighted
+            ? 'bg-[var(--primary)] text-white hover:opacity-90'
+            : 'border border-gray-300 text-[var(--text-dark)] hover:border-[var(--primary)] hover:text-[var(--primary)]'
+        }`}
+      >
+        {plan.cta}
+      </Link>
+    </div>
+  );
+}
+
 export function Pricing() {
+  const { ref: headerRef, isInView: headerInView } = useInView(0.15);
+
   return (
     <section id="plan" className="bg-gray-50 py-24">
       <div className="mx-auto max-w-[1200px] px-6">
         {/* Section Header */}
-        <div className="mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full bg-emerald-100 px-4 py-1.5 text-sm font-semibold text-emerald-600">
-            料金プラン
+        <div 
+          ref={headerRef} 
+          className="mb-16 text-center"
+          style={{
+            opacity: headerInView ? 1 : 0,
+            transform: headerInView ? 'translateY(0)' : 'translateY(40px)',
+            transition: 'opacity 0.8s ease-out, transform 0.8s ease-out',
+          }}
+        >
+          <span className="font-google-sans mb-6 inline-block text-2xl lg:text-[30px] font-semibold text-[var(--primary)]" style={{ letterSpacing: '-0.01em' }}>
+            Pricing
           </span>
-          <h2 className="text-4xl font-semibold tracking-tight text-[var(--text-dark)] md:text-5xl">
+          <h2 className="text-4xl font-semibold tracking-tight text-[#464253] md:text-5xl" style={{ letterSpacing: '-0.01em' }}>
             シンプルな料金体系
           </h2>
-          <p className="mx-auto mt-6 max-w-[600px] text-lg text-[var(--text-muted)]">
+          <p className="mx-auto mt-6 max-w-[600px] text-lg text-[#5E5677]" style={{ letterSpacing: '-0.01em' }}>
             無料プランからスタート。必要に応じてアップグレードできます。
           </p>
         </div>
@@ -72,57 +141,10 @@ export function Pricing() {
         {/* Pricing Cards */}
         <div className="grid gap-8 md:grid-cols-3">
           {plans.map((plan, index) => (
-            <div
-              key={index}
-              className={`relative rounded-2xl p-8 ${
-                plan.highlighted
-                  ? 'border-2 border-[var(--primary)] bg-white shadow-xl'
-                  : 'border border-gray-200 bg-white'
-              }`}
-            >
-              {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-[var(--primary)] px-4 py-1 text-sm font-semibold text-white">
-                  人気
-                </div>
-              )}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-[var(--text-dark)]">
-                  {plan.name}
-                </h3>
-                <p className="mt-1 text-sm text-[var(--text-muted)]">
-                  {plan.description}
-                </p>
-              </div>
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-[var(--text-dark)]">
-                  {plan.price}
-                </span>
-                <span className="text-[var(--text-muted)]">{plan.period}</span>
-              </div>
-              <ul className="mb-8 space-y-3">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center gap-3">
-                    <Check className="h-5 w-5 flex-shrink-0 text-emerald-500" />
-                    <span className="text-[var(--text-muted)]">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/signup"
-                className={`block w-full rounded-xl py-3 text-center font-semibold transition-all ${
-                  plan.highlighted
-                    ? 'bg-[var(--primary)] text-white hover:opacity-90'
-                    : 'border border-gray-300 text-[var(--text-dark)] hover:border-[var(--primary)] hover:text-[var(--primary)]'
-                }`}
-              >
-                {plan.cta}
-              </Link>
-            </div>
+            <PricingCard key={index} plan={plan} index={index} />
           ))}
         </div>
       </div>
     </section>
   );
 }
-
-

@@ -59,14 +59,15 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-white/80 backdrop-blur-md">
-      <div className="mx-auto flex h-[72px] max-w-[1728px] items-center justify-between px-14">
+      <div className="mx-auto flex h-[56px] md:h-[64px] lg:h-[72px] xl:h-[80px] 2xl:h-[88px] max-w-[1728px] items-center justify-between px-6 md:px-10 lg:px-14">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
             src="/logo.svg"
             alt="Contäx"
-            width={240}
-            height={55}
+            width={180}
+            height={41}
+            className="md:w-[220px] lg:w-[260px] xl:w-[280px] h-auto"
             priority
           />
         </Link>

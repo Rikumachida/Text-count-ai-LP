@@ -41,8 +41,8 @@ export function Footer() {
               <Image
                 src="/logo.svg"
                 alt="Contäx"
-                width={140}
-                height={32}
+                width={180}
+                height={41}
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">
@@ -100,5 +100,7 @@ export function Footer() {
     </footer>
   );
 }
+
+
 
 
