@@ -7,17 +7,17 @@ const steps = [
   {
     title: '論理的な構成を設計する',
     description: 'ブロックを追加や組み換えをすることで、文章の構造を設計します。PREP法などのテンプレートを使えば、説得力のある文章構成を簡単に作れます。',
-    image: '/screenshots/screenshot-editor.png',
+    image: '/screenshots/snapshot_editor.png',
   },
   {
     title: 'AIのヒントで内容を充実',
     description: 'テーマを入力すると、AIが各ブロックに最適なヒントを提案します。あなたの経験データも活用して、具体的で説得力のある内容を入力できます。',
-    image: '/screenshots/screenshot-editor.png',
+    image: '/screenshots/snapshot_hint.png',
   },
   {
     title: 'ワンクリックで文章を完成',
     description: '設計した構成と入力内容をもとに、AIが高品質な文章を自動生成します。目標文字数も考慮して、バランスの取れた文章が瞬時に完成します。',
-    image: '/screenshots/screenshot-experiences.png',
+    image: '/screenshots/snapshot_text.png',
   },
 ];
 
