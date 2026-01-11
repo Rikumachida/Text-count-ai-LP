@@ -71,7 +71,7 @@ export function Hero() {
 
           {/* CTA Button - アニメーション付き（さらに遅延） */}
           <a
-            href="https://text-count-ai.vercel.app/"
+            href="https://contax-next-app.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className={`mt-16 flex h-[69px] items-center justify-center gap-3 rounded-xl bg-[var(--primary)] px-12 text-2xl font-semibold text-white transition-all duration-700 ease-out delay-300 hover:scale-105 hover:shadow-lg ${

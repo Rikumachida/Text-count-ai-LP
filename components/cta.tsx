@@ -46,7 +46,7 @@ export function CTA() {
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
-            href="https://text-count-ai.vercel.app/"
+            href="https://contax-next-app.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-[56px] items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-8 text-lg font-semibold text-[var(--text-dark)] transition-all hover:border-[var(--primary)] hover:text-[var(--primary)]"

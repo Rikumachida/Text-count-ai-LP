@@ -102,20 +102,24 @@ export function Header() {
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-4">
-          <Link
-            href="/signin"
+          <a
+            href="https://contax-next-app.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex h-[46px] items-center justify-center rounded-lg border border-[var(--text-muted)] px-8 text-lg font-normal text-[var(--text-muted)] transition-colors hover:border-[var(--primary)] hover:text-[var(--primary)]"
             style={{ letterSpacing: '-0.01em' }}
           >
             サインイン
-          </Link>
-          <Link
-            href="/signup"
+          </a>
+          <a
+            href="https://contax-next-app.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex h-[46px] items-center justify-center rounded-lg bg-[var(--primary)] px-8 text-lg font-normal text-white transition-opacity hover:opacity-90"
             style={{ letterSpacing: '-0.01em' }}
           >
             サインアップ
-          </Link>
+          </a>
         </div>
       </div>
     </header>
